@@ -26,7 +26,7 @@ def stream_data(data_queue):
         timestamp = time.time()
         data_queue.put((timestamp, data))
         print(f"Data added to queue at {timestamp}")  # 데이터 추가 확인용 로그
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 
 def model_inference(model_id, device, data_queue, result_queue):
@@ -35,7 +35,7 @@ def model_inference(model_id, device, data_queue, result_queue):
 
     while True:
         if data_queue.empty():
-            time.sleep(0.1)  
+            time.sleep(0.3)  
         else:
             timestamp, data = data_queue.get()
             data = data.to(device)
